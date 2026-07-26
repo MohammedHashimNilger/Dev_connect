@@ -26,7 +26,7 @@ const Signup = () => {
       setName("");
       setEmail("");
       setPassword("");
-      navigate("/login");
+      navigate("/feed");
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong");
     } finally {
