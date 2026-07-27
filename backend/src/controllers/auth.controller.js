@@ -83,10 +83,7 @@ export const loginUser = async (req, res) => {
     }
 
     // Compare password
-    const isMatch = await bcrypt.compare(
-      password,
-      user.passwordHash
-    );
+    const isMatch = await bcrypt.compare(password, user.passwordHash);
 
     if (!isMatch) {
       return res.status(401).json({
@@ -103,13 +100,13 @@ export const loginUser = async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: process.env.JWT_EXPIRES_IN,
-      }
+      },
     );
 
     // Send cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, // Change to true in production with HTTPS
+      secure: false,
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
